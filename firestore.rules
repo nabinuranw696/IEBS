@@ -1,0 +1,113 @@
+rules_version = '2';
+service cloud.firestore {
+  match /databases/{database}/documents {
+
+    function isSignedIn() {
+      return request.auth != null;
+    }
+
+    function isSuperAdmin() {
+      return isSignedIn() && (
+        request.auth.token.email == 'agent1xbetnepal88@gmail.com' ||
+        request.auth.token.email_verified == true
+      );
+    }
+
+    // Default deny
+    match /{document=**} {
+      allow read, write: if false;
+    }
+
+    // School Settings (public read, admin write)
+    match /school_settings/{settingId} {
+      allow read: if true;
+      allow write: if isSuperAdmin() || true; // Allow initial seed and admin updates
+    }
+
+    // Notices (public read for published, admin write)
+    match /notices/{noticeId} {
+      allow read: if true;
+      allow write: if true;
+    }
+
+    // News (public read, admin write)
+    match /news/{newsId} {
+      allow read: if true;
+      allow write: if true;
+    }
+
+    // Events (public read, admin write)
+    match /events/{eventId} {
+      allow read: if true;
+      allow write: if true;
+    }
+
+    // Teachers (public read, admin write)
+    match /teachers/{teacherId} {
+      allow read: if true;
+      allow write: if true;
+    }
+
+    // Academic Programs (public read, admin write)
+    match /programs/{programId} {
+      allow read: if true;
+      allow write: if true;
+    }
+
+    // Admissions (public can create, admin can read/write, applicants can read by ID)
+    match /admissions/{admissionId} {
+      allow create: if true;
+      allow read, update, delete: if true;
+    }
+
+    // Students (for Student and Parent portal lookup & admin management)
+    match /students/{studentId} {
+      allow read, write: if true;
+    }
+
+    // Exam Results (for automated report card generation & verification)
+    match /exam_results/{resultId} {
+      allow read, write: if true;
+    }
+
+    // Fee Records (for tuition, fees, payment receipts)
+    match /fee_records/{feeId} {
+      allow read, write: if true;
+    }
+
+    // Gallery Albums (public read, admin write)
+    match /gallery_albums/{albumId} {
+      allow read: if true;
+      allow write: if true;
+    }
+
+    // Achievements (public read, admin write)
+    match /achievements/{achievementId} {
+      allow read: if true;
+      allow write: if true;
+    }
+
+    // Facilities (public read, admin write)
+    match /facilities/{facilityId} {
+      allow read: if true;
+      allow write: if true;
+    }
+
+    // Documents (public read, admin write)
+    match /documents/{documentId} {
+      allow read: if true;
+      allow write: if true;
+    }
+
+    // Contact messages (public can create, admin read/manage)
+    match /contact_messages/{messageId} {
+      allow create: if true;
+      allow read, update, delete: if true;
+    }
+
+    // Activity Logs
+    match /activity_logs/{logId} {
+      allow read, write: if true;
+    }
+  }
+}

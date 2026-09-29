@@ -1,0 +1,6 @@
+{
+  "name": "Inaruwa English Boarding School - IEBS",
+  "description": "Official Portal and School Management System for Inaruwa English Boarding School (IEBS), Inaruwa, Sunsari, Koshi Province, Nepal. Featuring Student Portal, Parent Portal, Online Admissions, automated Report Cards, and comprehensive School CMS.",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}

@@ -1,0 +1,354 @@
+{
+  "entities": {
+    "SchoolSetting": {
+      "title": "SchoolSetting",
+      "description": "General settings and institutional configuration for IEBS",
+      "type": "object",
+      "properties": {
+        "schoolName": { "type": "string" },
+        "tagline": { "type": "string" },
+        "address": { "type": "string" },
+        "phone": { "type": "string" },
+        "email": { "type": "string" },
+        "officeHours": { "type": "string" },
+        "logoUrl": { "type": "string" },
+        "announcementBar": { "type": "string" },
+        "announcementActive": { "type": "boolean" },
+        "principalName": { "type": "string" },
+        "principalMessage": { "type": "string" },
+        "principalPhoto": { "type": "string" },
+        "chairmanName": { "type": "string" },
+        "chairmanMessage": { "type": "string" },
+        "history": { "type": "string" },
+        "vision": { "type": "string" },
+        "mission": { "type": "string" },
+        "updatedAt": { "type": "string" }
+      },
+      "required": ["schoolName", "address", "phone", "email"]
+    },
+    "Notice": {
+      "title": "Notice",
+      "description": "Official school notices and circulars",
+      "type": "object",
+      "properties": {
+        "title": { "type": "string" },
+        "category": { "type": "string" },
+        "description": { "type": "string" },
+        "publishedDate": { "type": "string" },
+        "isFeatured": { "type": "boolean" },
+        "status": { "type": "string", "enum": ["draft", "published", "archived"] },
+        "attachmentUrl": { "type": "string" },
+        "createdAt": { "type": "string" }
+      },
+      "required": ["title", "category", "description", "status"]
+    },
+    "News": {
+      "title": "News",
+      "description": "School news and press releases",
+      "type": "object",
+      "properties": {
+        "title": { "type": "string" },
+        "slug": { "type": "string" },
+        "summary": { "type": "string" },
+        "content": { "type": "string" },
+        "author": { "type": "string" },
+        "category": { "type": "string" },
+        "imageUrl": { "type": "string" },
+        "publishedDate": { "type": "string" },
+        "status": { "type": "string", "enum": ["draft", "published"] },
+        "createdAt": { "type": "string" }
+      },
+      "required": ["title", "slug", "summary", "content", "status"]
+    },
+    "Event": {
+      "title": "Event",
+      "description": "School calendar events and sports/cultural meets",
+      "type": "object",
+      "properties": {
+        "title": { "type": "string" },
+        "slug": { "type": "string" },
+        "description": { "type": "string" },
+        "eventDate": { "type": "string" },
+        "startTime": { "type": "string" },
+        "endTime": { "type": "string" },
+        "location": { "type": "string" },
+        "organizer": { "type": "string" },
+        "imageUrl": { "type": "string" },
+        "status": { "type": "string", "enum": ["upcoming", "completed", "cancelled"] },
+        "createdAt": { "type": "string" }
+      },
+      "required": ["title", "eventDate", "location", "status"]
+    },
+    "Teacher": {
+      "title": "Teacher",
+      "description": "Faculty and teaching staff profile",
+      "type": "object",
+      "properties": {
+        "name": { "type": "string" },
+        "designation": { "type": "string" },
+        "department": { "type": "string" },
+        "subject": { "type": "string" },
+        "qualification": { "type": "string" },
+        "experience": { "type": "string" },
+        "bio": { "type": "string" },
+        "email": { "type": "string" },
+        "phone": { "type": "string" },
+        "photo": { "type": "string" },
+        "status": { "type": "string", "enum": ["active", "inactive"] },
+        "order": { "type": "number" },
+        "createdAt": { "type": "string" }
+      },
+      "required": ["name", "designation", "department", "subject", "status"]
+    },
+    "AcademicProgram": {
+      "title": "AcademicProgram",
+      "description": "Educational levels and curriculums offered",
+      "type": "object",
+      "properties": {
+        "name": { "type": "string" },
+        "slug": { "type": "string" },
+        "level": { "type": "string" },
+        "classes": { "type": "string" },
+        "description": { "type": "string" },
+        "curriculum": { "type": "string" },
+        "features": { "type": "string" },
+        "imageUrl": { "type": "string" },
+        "order": { "type": "number" },
+        "status": { "type": "string", "enum": ["active", "inactive"] }
+      },
+      "required": ["name", "slug", "classes", "description", "status"]
+    },
+    "AdmissionApplication": {
+      "title": "AdmissionApplication",
+      "description": "Prospective student online admission form submission",
+      "type": "object",
+      "properties": {
+        "applicationId": { "type": "string" },
+        "studentName": { "type": "string" },
+        "dob": { "type": "string" },
+        "gender": { "type": "string" },
+        "applyingClass": { "type": "string" },
+        "previousSchool": { "type": "string" },
+        "parentName": { "type": "string" },
+        "relation": { "type": "string" },
+        "parentPhone": { "type": "string" },
+        "parentEmail": { "type": "string" },
+        "address": { "type": "string" },
+        "status": { "type": "string", "enum": ["pending", "under_review", "approved", "rejected"] },
+        "adminRemarks": { "type": "string" },
+        "createdAt": { "type": "string" }
+      },
+      "required": ["applicationId", "studentName", "dob", "gender", "applyingClass", "parentName", "parentPhone", "status"]
+    },
+    "Student": {
+      "title": "Student",
+      "description": "Enrolled student record in the school information system",
+      "type": "object",
+      "properties": {
+        "studentId": { "type": "string" },
+        "admissionNo": { "type": "string" },
+        "fullName": { "type": "string" },
+        "className": { "type": "string" },
+        "section": { "type": "string" },
+        "rollNumber": { "type": "number" },
+        "dob": { "type": "string" },
+        "gender": { "type": "string" },
+        "guardianName": { "type": "string" },
+        "guardianPhone": { "type": "string" },
+        "guardianEmail": { "type": "string" },
+        "address": { "type": "string" },
+        "bloodGroup": { "type": "string" },
+        "photoUrl": { "type": "string" },
+        "status": { "type": "string", "enum": ["active", "graduated", "transferred"] },
+        "accessPin": { "type": "string" }
+      },
+      "required": ["studentId", "admissionNo", "fullName", "className", "section", "guardianPhone"]
+    },
+    "ExamResult": {
+      "title": "ExamResult",
+      "description": "Terminal and annual exam report card records",
+      "type": "object",
+      "properties": {
+        "studentId": { "type": "string" },
+        "studentName": { "type": "string" },
+        "className": { "type": "string" },
+        "section": { "type": "string" },
+        "rollNumber": { "type": "number" },
+        "term": { "type": "string" },
+        "academicYear": { "type": "string" },
+        "subjects": { "type": "string" },
+        "totalMarks": { "type": "number" },
+        "obtainedMarks": { "type": "number" },
+        "percentage": { "type": "number" },
+        "gpa": { "type": "string" },
+        "letterGrade": { "type": "string" },
+        "rank": { "type": "string" },
+        "attendance": { "type": "string" },
+        "remarks": { "type": "string" },
+        "publishedDate": { "type": "string" }
+      },
+      "required": ["studentId", "term", "academicYear", "gpa", "letterGrade"]
+    },
+    "FeeRecord": {
+      "title": "FeeRecord",
+      "description": "Tuition and institutional fee invoice and payment ledger",
+      "type": "object",
+      "properties": {
+        "invoiceNo": { "type": "string" },
+        "studentId": { "type": "string" },
+        "studentName": { "type": "string" },
+        "className": { "type": "string" },
+        "month": { "type": "string" },
+        "academicYear": { "type": "string" },
+        "tuitionFee": { "type": "number" },
+        "examFee": { "type": "number" },
+        "computerFee": { "type": "number" },
+        "transportFee": { "type": "number" },
+        "totalAmount": { "type": "number" },
+        "paidAmount": { "type": "number" },
+        "dueAmount": { "type": "number" },
+        "status": { "type": "string", "enum": ["paid", "partial", "unpaid"] },
+        "paymentMethod": { "type": "string" },
+        "transactionId": { "type": "string" },
+        "paymentDate": { "type": "string" }
+      },
+      "required": ["invoiceNo", "studentId", "totalAmount", "status"]
+    },
+    "GalleryAlbum": {
+      "title": "GalleryAlbum",
+      "description": "Photo and video gallery album",
+      "type": "object",
+      "properties": {
+        "title": { "type": "string" },
+        "slug": { "type": "string" },
+        "category": { "type": "string" },
+        "coverImage": { "type": "string" },
+        "eventDate": { "type": "string" },
+        "description": { "type": "string" },
+        "images": { "type": "string" },
+        "status": { "type": "string", "enum": ["published", "draft"] }
+      },
+      "required": ["title", "slug", "coverImage", "status"]
+    },
+    "Achievement": {
+      "title": "Achievement",
+      "description": "Student and institutional awards and accolades",
+      "type": "object",
+      "properties": {
+        "title": { "type": "string" },
+        "studentName": { "type": "string" },
+        "className": { "type": "string" },
+        "category": { "type": "string" },
+        "description": { "type": "string" },
+        "imageUrl": { "type": "string" },
+        "year": { "type": "string" }
+      },
+      "required": ["title", "category", "description"]
+    },
+    "Facility": {
+      "title": "Facility",
+      "description": "School infrastructure and campus facilities",
+      "type": "object",
+      "properties": {
+        "name": { "type": "string" },
+        "icon": { "type": "string" },
+        "description": { "type": "string" },
+        "imageUrl": { "type": "string" },
+        "features": { "type": "string" },
+        "order": { "type": "number" }
+      },
+      "required": ["name", "description"]
+    },
+    "DocumentDownload": {
+      "title": "DocumentDownload",
+      "description": "Syllabus, prospectus, exam routines, and calendar downloads",
+      "type": "object",
+      "properties": {
+        "title": { "type": "string" },
+        "category": { "type": "string" },
+        "fileSize": { "type": "string" },
+        "fileUrl": { "type": "string" },
+        "publishedDate": { "type": "string" },
+        "downloadCount": { "type": "number" }
+      },
+      "required": ["title", "category", "fileUrl"]
+    },
+    "ContactMessage": {
+      "title": "ContactMessage",
+      "description": "Inquiry and contact feedback received from parents or public",
+      "type": "object",
+      "properties": {
+        "fullName": { "type": "string" },
+        "email": { "type": "string" },
+        "phone": { "type": "string" },
+        "subject": { "type": "string" },
+        "message": { "type": "string" },
+        "status": { "type": "string", "enum": ["unread", "read", "replied"] },
+        "createdAt": { "type": "string" }
+      },
+      "required": ["fullName", "email", "message", "status"]
+    }
+  },
+  "firestore": {
+    "/school_settings/{settingId}": {
+      "schema": "SchoolSetting",
+      "description": "Global school settings and dynamic content"
+    },
+    "/notices/{noticeId}": {
+      "schema": "Notice",
+      "description": "School circulars and emergency notices"
+    },
+    "/news/{newsId}": {
+      "schema": "News",
+      "description": "School news articles"
+    },
+    "/events/{eventId}": {
+      "schema": "Event",
+      "description": "School events schedule"
+    },
+    "/teachers/{teacherId}": {
+      "schema": "Teacher",
+      "description": "Teacher directory"
+    },
+    "/programs/{programId}": {
+      "schema": "AcademicProgram",
+      "description": "Curriculum programs"
+    },
+    "/admissions/{admissionId}": {
+      "schema": "AdmissionApplication",
+      "description": "Student online admission applications"
+    },
+    "/students/{studentId}": {
+      "schema": "Student",
+      "description": "Official student enrollment records"
+    },
+    "/exam_results/{resultId}": {
+      "schema": "ExamResult",
+      "description": "Student terminal examination report cards"
+    },
+    "/fee_records/{feeId}": {
+      "schema": "FeeRecord",
+      "description": "Student fee invoices and payment receipts"
+    },
+    "/gallery_albums/{albumId}": {
+      "schema": "GalleryAlbum",
+      "description": "School photo and video albums"
+    },
+    "/achievements/{achievementId}": {
+      "schema": "Achievement",
+      "description": "Student honors and school achievements"
+    },
+    "/facilities/{facilityId}": {
+      "schema": "Facility",
+      "description": "Campus facilities"
+    },
+    "/documents/{documentId}": {
+      "schema": "DocumentDownload",
+      "description": "Downloadable school files"
+    },
+    "/contact_messages/{messageId}": {
+      "schema": "ContactMessage",
+      "description": "Public messages and inquiries"
+    }
+  }
+}
